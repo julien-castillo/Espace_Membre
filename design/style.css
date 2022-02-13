@@ -13,6 +13,14 @@ body {
   margin: 0;
 }
 
+button {
+  background-color: #d64541;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  padding: 5px;
+}
+
 input {
   border: 1px solid rgb(0, 0, 0);
   padding: 5px 10px;
@@ -33,7 +41,7 @@ header {
   padding: 10px;
 }
 header h1 {
-  color: #fde3a7;
+  color: #fde3a7; 
 }
 
 .container {
@@ -48,4 +56,17 @@ header h1 {
 
 #info {
   text-align: center;
+}
+
+#button {
+  text-align: center;
+  margin-top: 5px;
+  color: red;
+}
+
+#error {
+  background-color: red;
+  color: white;
+  text-align: center;
+  padding: 5px;
 }

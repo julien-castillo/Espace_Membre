@@ -33,12 +33,12 @@
                         <td><input type="password" name="password" placeholder="********" /></td>
                     </tr>
                 </table>
-                <button>Connexion</button>
+                <div id="button">
+                    <button>Connexion</button>
+                </div>
             </form>
         </div>
     </div>
 
 </body>
-<script src='text/javascript' href='App.js'></script>
-
 </html>

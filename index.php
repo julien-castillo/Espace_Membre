@@ -1,5 +1,37 @@
 <?php
+require('db_connection.php');
 
+if (!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
+
+    // Variables
+
+    $pseudo = $_POST['pseudo'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $password_confirm = $_POST['password_confirm'];
+
+    // Test si password = password_confirm
+    if($password != $password_confirm){
+        header('location: index.php?error=1&pass=1');
+    }
+
+    // Test si email déjà utilisé
+
+    $req = $db->prepare("SELECT count(*) as numberEmail FROM users WHERE email = ?");
+    $req->execute(array($email));
+
+    while($email_verification = $req->fetch()) {
+        if($email_verification['numberEmail'] != 0) {
+            header('location: index.php?error=1&email=1');
+            exit();
+        }
+    }
+
+
+
+
+
+}
 
 
 ?>
@@ -22,6 +54,19 @@
 
     <div class="container">
         <p id="info">Bienvenue sur mon site, pour en voir plus, inscrivez-vous. Sinon, <a href="connection.php">Connectez-vous</a>.</p>
+
+        <?php
+        if(isset($_GET['error'])) {
+            if(isset($_GET['pass'])) {
+                echo'<p id="error">Les mots de passe ne sont pas identiques.</p>';
+            } else if(isset($_GET['email'])) {
+                echo'<p id="error">Cette adresse email est déjà utilisée</p>';
+
+            }
+        }
+        
+        
+        ?>
         <div id="form">
             <form action="index.php" method="post">
                 <table>
@@ -42,11 +87,12 @@
                         <td><input type="password" name="password_confirm" placeholder="********" /></td>
                     </tr>
                 </table>
-                <button>Inscription</button>
+                <div id="button">
+                    <button>Inscription</button>
+                </div>
             </form>
         </div>
     </div>
 </body>
-<script src='text/javascript' href='App.js'></script>
 
 </html>
