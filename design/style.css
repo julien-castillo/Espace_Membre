@@ -70,3 +70,10 @@ header h1 {
   text-align: center;
   padding: 5px;
 }
+
+#success {
+  background-color: green;
+  color: white;
+  text-align: center;
+  padding: 5px;
+}
